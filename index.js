@@ -8,19 +8,19 @@ function handleClick() {
   let buttonInnerHTML = this.innerHTML;
 
   makeSound(buttonInnerHTML);
+
+  buttonAnimation(buttonInnerHTML);
 }
 
 //Detecting key press
 
-document.addEventListener("keydown", function(event) {
-
+document.addEventListener("keydown", function (event) {
   makeSound(event.key);
+
+  buttonAnimation(event.key);
 });
 
-
-
 function makeSound(key) {
-    
   switch (key) {
     case "w":
       let tom1 = new Audio("sounds/tom-1.mp3");
@@ -53,4 +53,14 @@ function makeSound(key) {
     default:
       console.log(buttonInnerHTML);
   }
+}
+
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
